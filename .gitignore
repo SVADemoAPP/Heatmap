@@ -1,0 +1,7 @@
+/target/
+/src/main/webapp/WEB-INF/lib/
+/src/main/webapp/WEB-INF/readme/
+/src/main/webapp/WEB-INF/testReport/
+/src/main/webapp/WEB-INF/upload/
+/src/main/webapp/WEB-INF/user/
+/src/main/webapp/WEB-INF/version/

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<div id="main">
+		</div>
+		<button id="ok">click me</button>
+		<script src="raphael.min.js"></script>
+		<script src="../jquery.js"></script>
+		<script src="graphics.js"></script>
+		<script>
+			// Creates canvas 320 ¡Á 200 at 10, 50
+			var paper = Raphael(10, 50, 320, 200);
+
+			var g = new Graphics({mapUrl:"url(1.jpg)",mapWidth:1025,mapHeight:1002,containerId:"main"});
+			g._init();
+			
+			$("#ok").click(function(){
+				console.log(g._getData());
+			});
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sva.dao.WinningRecordDao">
+
+    <select id="getDeptRate" resultType="DeptRateModel">
+        SELECT * 
+        FROM dept_winning_rate 
+        WHERE prizeCode = #{value}
+    </select>
+    
+    <update id="updateDeptRate">
+        UPDATE dept_winning_rate 
+        SET rate = #{deptRate.rate}
+        WHERE id = #{deptRate.id}
+    </update>
+    
+    <update id="refreshDeptRate">
+        UPDATE dept_winning_rate 
+        SET rate = #{rate}
+        WHERE dept = #{dept}
+    </update>
+    
+    <select id="getPrizeCountByCode" resultType="Integer">
+        SELECT count 
+        FROM prize
+        WHERE code = #{value}
+    </select>
+    
+    <select id="getReceivedPrizeCountByCode" resultType="Integer">
+        SELECT count(accountId)
+        FROM winning_record
+        WHERE prizeCode = #{value} and received = 1
+    </select>
+    
+    <select id="getPrizeDetail" resultType="PrizeModel">
+        SELECT * 
+        FROM prize 
+        WHERE code = #{value}
+    </select>
+    
+    <update id="updatePrizeDetail">
+        UPDATE winning_record 
+        SET confirm = #{confirm}
+        WHERE id = #{id}
+    </update>
+    
+    <insert id="saveWinningRecord">
+        INSERT INTO 
+            winning_record(accountId,prizeCode,received,time) 
+        VALUES(#{accountId},#{prizeCode},#{received},#{time})
+    </insert>
+    
+    <select id="getAllPrizeDetail" resultType="PrizeModel">
+        SELECT *
+        FROM prize
+        ORDER BY code
+    </select>
+    
+    <select id="getAllWinRecord" resultType="WinningRecordModel">
+        SELECT a.*,b.username, b.realname,b.phoneNo,c.name 
+        FROM annual.winning_record a 
+            left join sys_account b on a.accountId=b.id 
+            left join prize c on a.prizeCode= c.code 
+        WHERE received = 1
+        ORDER BY a.prizeCode,a.accountId
+    </select>
+    
+    <select id="getWinInfoByAccount" resultType="WinningRecordModel">
+        SELECT a.*,b.username, b.realname,c.name,c.desc  
+        FROM winning_record a 
+            left join sys_account b on a.accountId=b.id 
+            left join prize c on a.prizeCode= c.code 
+        WHERE b.openid=#{openid} and received = 1
+        ORDER BY a.prizeCode
+    </select>
+    
+    <delete id="refreshRecord">
+        DELETE FROM winning_record
+    </delete>
+    
+</mapper>

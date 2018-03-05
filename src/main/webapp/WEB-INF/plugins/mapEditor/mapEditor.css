@@ -1,0 +1,41 @@
+.mapContainerStyle{
+	width:90%;
+	float:left;
+	background-color: rgba(160, 160, 160, 0.76);
+	-moz-user-select:none;
+    border: 5px solid #709ee0;
+	border-bottom: 1px solid #709ee0;
+}
+
+.mapToolStyle{
+	float:left;
+	width:9%;
+}
+
+.mapToolStyle>button{
+	width:100%;
+    line-height: 30px;
+    padding: 5px 10px;
+    margin-bottom: 1px;
+    background-color: #65dbec;
+    border: none;
+    color: #fff;
+}
+
+.mapToolStyle>button.active{
+	background-color: #54a5b1;
+}
+
+.mapToolStyle>button:hover{
+	background-color: #54a5b1;
+	cursor:pointer;
+}
+
+.mapFootStyle{
+	width:90%;
+	float:left;
+	height:30px;
+	background-color: rgba(160, 160, 160, 0.76);
+    border: 5px solid #709ee0;
+	border-top: 1px solid #709ee0;
+}

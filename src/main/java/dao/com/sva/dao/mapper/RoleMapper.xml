@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sva.dao.RoleDao">
+
+    <select id="getRoleByAccountId" resultType="RoleModel">
+        SELECT b.name 
+        FROM sys_account_role a join sys_role b
+            on a.roleId = b.id 
+        WHERE a.accountId = #{value}
+    </select>
+    
+</mapper>
