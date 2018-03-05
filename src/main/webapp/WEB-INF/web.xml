@@ -7,7 +7,4 @@
 	<session-config>
 		<session-timeout>1440</session-timeout>
 	</session-config>
-	<listener>
-           <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
-     </listener>
 </web-app>

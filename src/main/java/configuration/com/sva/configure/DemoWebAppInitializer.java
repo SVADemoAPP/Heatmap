@@ -29,7 +29,7 @@ public class DemoWebAppInitializer extends AbstractAnnotationConfigDispatcherSer
     @Override
     protected Class<?>[] getRootConfigClasses()
     {
-        return new Class<?>[]{RootConfig.class, SecurityConfig.class};
+        return new Class<?>[]{RootConfig.class};
     }
 
     /* (非 Javadoc) 

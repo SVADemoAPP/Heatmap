@@ -40,7 +40,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages={"com.sva"})
-@ImportResource("classpath:quartz-config.xml")
 public class WebConfig extends WebMvcConfigurerAdapter
 {
     /** 
@@ -157,7 +156,6 @@ public class WebConfig extends WebMvcConfigurerAdapter
         registry.addResourceHandler("/plugins/**").addResourceLocations("/WEB-INF/plugins/");
         registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/images/");
         registry.addResourceHandler("/upload/**").addResourceLocations("/WEB-INF/upload/");
-        registry.addResourceHandler("/weixin/**").addResourceLocations("/WEB-INF/weixin/");
     }
     /* (非 Javadoc) 
      * <p>Title: addInterceptors</p> 
