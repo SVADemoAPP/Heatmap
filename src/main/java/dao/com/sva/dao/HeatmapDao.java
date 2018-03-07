@@ -28,7 +28,7 @@ public interface HeatmapDao
      * @param mapId
      * @return 
      */
-    public List<MapsModel> getMapInfoById(String mapId);
+    public MapsModel getMapInfoById(String mapId);
     
     /** 
      * @Title: getMapInfoByStation 
@@ -46,5 +46,5 @@ public interface HeatmapDao
      * @param endtime
      * @return 
      */
-    public List<LocationModel> getHeatmapData(@Param("mapId")String mapId,@Param("starttime")String starttime,@Param("endtime")String endtime);
+    public List<LocationModel> getHeatmapData(@Param("mapId")String mapId,@Param("starttime")long starttime,@Param("endtime")long endtime);
 }

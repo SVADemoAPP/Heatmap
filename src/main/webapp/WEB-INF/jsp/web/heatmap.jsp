@@ -80,7 +80,7 @@
 		    density = "${param.density}" || 1,
 		    interval = "${param.rate}" || 4,
 		    stationId = "${param.stationId}" || 1,
-		    floorId = "${param.floorId}" || 1;
+		    mapId = "${param.mapId}" || 1;
 		    
 		var pointVal = density;
 		var configObj = {
@@ -92,8 +92,8 @@
 		};
 
 		jQuery(document).ready(function() {
+            Heatmap.init();
 			Heatmap.bindClickEvent();
-			//Heatmap.initHeatmap();
 		});
 	</script>
 	<!-- END JAVASCRIPTS -->

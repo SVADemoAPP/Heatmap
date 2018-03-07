@@ -6,27 +6,27 @@
 
     <select id="getMapInfoById" resultType="MapsModel">
         SELECT * 
-        FROM maps
-        WHERE mapId = #{value}
+        FROM "maps"
+        WHERE "mapId" = #{value}
     </select>
     
     <select id="getMapInfoByStation" resultType="MapsModel">
-        SELECT mapId, floor
-        FROM maps
-        WHERE stationId = #{value}
+        SELECT "mapId", "floor"
+        FROM "maps"
+        WHERE "stationId" = #{value}
     </select>
     
     <select id="getHeatmapData" resultType="LocationModel">
         SELECT * 
         FROM (
             SELECT * 
-            FROM location
-            WHERE mapId = #{mapId}
-                and timestamp &gt; #{starttime}
-                and timestamp &lt; #{endtime}
-            ORDER BY timestamp desc
+            FROM "location"
+            WHERE "mapId" = #{mapId}
+                and "timestamp" &gt; #{starttime}
+                and "timestamp" &lt; #{endtime}
+            ORDER BY "timestamp" desc
         ) a 
-        GROUP BY a.userID
+        GROUP BY a."userID"
     </select>
     
 </mapper>
