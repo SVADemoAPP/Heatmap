@@ -17,16 +17,14 @@
     </select>
     
     <select id="getHeatmapData" resultType="LocationModel">
-        SELECT * 
+        SELECT  t."x", t."y", t."mapId", t."timestamp", t."userId"  
         FROM (
-            SELECT * 
-            FROM "location"
-            WHERE "mapId" = #{mapId}
-                and "timestamp" &gt; #{starttime}
-                and "timestamp" &lt; #{endtime}
-            ORDER BY "timestamp" desc
-        ) a 
-        GROUP BY a."userID"
+            SELECT a.*, row_number() over(partition by a."userId" order by a."timestamp" desc) rw
+            FROM "location" a 
+            WHERE a."mapId" = #{mapId}
+                and a."timestamp" &gt; #{starttime}
+                and a."timestamp" &lt; #{endtime}) t  
+        WHERE t.rw = 1
     </select>
     
 </mapper>

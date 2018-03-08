@@ -102,15 +102,15 @@ var Heatmap = function() {
 			mapId : mapId
 		}, function(data) {
 			if (!data.error) {
-				if (data.bg) {
+				if (data.data.path) {
 					// 全局变量赋值
-					origX = data.xo;
-					origY = data.yo;
-					bgImg = data.bg;
-					bgImgWidth = data.bgWidth;
-					bgImgHeight = data.bgHeight;
-					scale = data.scale;
-					coordinate = data.coordinate;
+					origX = data.data.xo;
+					origY = data.data.yo;
+					bgImg = data.data.path;
+					bgImgWidth = data.data.imgWidth;
+					bgImgHeight = data.data.imgHeight;
+					scale = data.data.scale;
+					coordinate = data.data.coordinate;
 					// 设置背景图片
 					var bgImgStr = "url(../upload/" + bgImg + ")";
 					var imgInfo = calImgSize(bgImgWidth, bgImgHeight);
@@ -158,10 +158,14 @@ var Heatmap = function() {
 			// 热力图初始化
 			initHeatmap(mapId);
 			// 楼层列表初始化
-			$.post("/sva/home/getMapInfoByStation", function(data) {
+			$.post("/sva/home/getMapInfoByStation",{stationId:stationId}, function(data) {
 				if (!data.error) {
 					var mapList = data.data;
-					// TODO
+					var html = "";
+					for(var i=0; i<mapList.length; i++){
+						html = html + '<div class="floor" data-mapid="'+mapList[i].mapId+'">'+mapList[i].floor+'</div>';
+					}
+					$(".floorContainer").append(html);
 				}
 			});
 		},
@@ -170,7 +174,7 @@ var Heatmap = function() {
 			
 			// 点击楼层切换，触发热力图更新
 			$('.floor').live("click",function(e) {
-				mapId = $(this).data("mapId");
+				mapId = $(this).data("mapid");
 				
 				initHeatmap(mapId);
 

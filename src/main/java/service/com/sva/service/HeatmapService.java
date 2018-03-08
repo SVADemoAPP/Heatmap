@@ -75,7 +75,7 @@ public class HeatmapService
      */
     public List<LocationModel> getLocationData(String mapId){
         // 以模拟数据日期为准，设定热力图的当前起止时间
-        Date target = ConvertUtil.dateStringFormat(targetDate, "YYYYMMDD");
+        Date target = ConvertUtil.dateStringFormat(targetDate, "yyyyMMdd");
         // 获取当前时间的时分秒
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);

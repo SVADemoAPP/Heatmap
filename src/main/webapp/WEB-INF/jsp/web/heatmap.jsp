@@ -42,6 +42,25 @@
 	height: 26px; 
 	margin-top: 1px;
 }
+.floorContainer{
+    position: absolute;
+    left: 6%;
+    top: 8%;
+    width: 300px;
+}
+.floor{
+    cursor:pointer;
+    width:120px;
+    height:25px;
+    text-align:center;
+    float: left;
+    border: 1px solid #eee;
+    line-height: 25px;
+    margin: 0 0 2px 5px;
+}
+.floor:hover{
+    background:#eee;
+}
 </style>
 
 <link rel="shortcut icon" href="favicon.ico" />
@@ -58,6 +77,7 @@
 				<div id="mapContainer" class="demo-wrapper">
 					<div id="heatmap" class="heatmap"></div>
 				</div>
+				<div class="floorContainer"></div>
 			</div>
 
 		</div>

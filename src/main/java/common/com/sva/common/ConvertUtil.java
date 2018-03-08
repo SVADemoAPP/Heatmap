@@ -216,5 +216,13 @@ public class ConvertUtil
         
         return result;
     }
+    
+    public static void main(String[] args){
+        String dateStr = "20180101";
+        Date r1 = dateStringFormat(dateStr, "YYYYMMDD");
+        Date r2 = dateStringFormat(dateStr, "yyyyMMdd");
+        System.out.println(r1.toString());
+        System.out.println(r2.toString());
+    }
 
 }
