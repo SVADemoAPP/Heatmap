@@ -88,7 +88,7 @@ public class HeatmapService
         calendar.set(Calendar.MINUTE, min);
         calendar.set(Calendar.SECOND, sec);
         long starttime = calendar.getTimeInMillis();
-        long endtime = starttime - timeRange * 1000;
+        long endtime = starttime + timeRange * 1000;
         
         return dao.getHeatmapData(mapId, starttime, endtime);
     }

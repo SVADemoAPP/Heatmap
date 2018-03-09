@@ -24,24 +24,6 @@
 <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 <style type="text/css">
-.tip {
-	background: rgba(0, 0, 0, 0.8); padding: 5px; left: 0px; top: 0px; color: white; line-height: 18px; font-size: 14px; display: none; position: absolute;
-}
-.demo-wrapper {
-	position: relative;
-}
-#time{
-	vertical-align: top; 
-	padding: 0px 3px 0px 4px; 
-	height: 26px; 
-	width:30px;
-}
-#confirm{
-	vertical-align: top; 
-	padding: 0px 3px 0px 4px; 
-	height: 26px; 
-	margin-top: 1px;
-}
 .floorContainer{
     position: absolute;
     left: 6%;
@@ -60,6 +42,10 @@
 }
 .floor:hover{
     background:#eee;
+}
+.heatmap{
+    height: 100%;
+    width: 100%;
 }
 </style>
 
