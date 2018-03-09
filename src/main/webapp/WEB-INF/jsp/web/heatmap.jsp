@@ -19,11 +19,12 @@
 <meta content="" name="description" />
 <meta content="" name="author" />
 <meta name="MobileOptimized" content="320">
-
-<%@ include file="../shared/importCss.jsp"%>
 <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 <style type="text/css">
+body{
+    margin: 0;
+}
 .floorContainer{
     position: absolute;
     left: 6%;
@@ -54,11 +55,11 @@
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
-<body class="page-header-fixed">
+<body>
 	<!-- BEGIN CONTAINER -->
-	<div class="page-container">
+	<div>
 		<!-- BEGIN PAGE -->
-		<div class="page-content">
+		<div>
 			<div id="mainContent">
 				<div id="mapContainer" class="demo-wrapper">
 					<div id="heatmap" class="heatmap"></div>
