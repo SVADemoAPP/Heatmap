@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sva.dao.HeatmapDao">
-
+<!-- 
     <select id="getMapInfoById" resultType="MapsModel">
         SELECT * 
         FROM "maps"
@@ -25,6 +25,31 @@
                 and a."timestamp" &gt; #{starttime}
                 and a."timestamp" &lt; #{endtime}) t  
         WHERE t.rw = 1
+    </select>
+     -->
+    <select id="getMapInfoById" resultType="MapsModel">
+        SELECT * 
+        FROM maps
+        WHERE mapId = #{value}
+    </select>
+    
+    <select id="getMapInfoByStation" resultType="MapsModel">
+        SELECT mapId, floor
+        FROM maps
+        WHERE stationId = #{value}
+    </select>
+    
+    <select id="getHeatmapData" resultType="LocationModel">
+        SELECT * 
+        FROM (
+            SELECT * 
+            FROM ${tableName}
+            WHERE mapId = #{mapId}
+                and timestamp &gt; #{starttime}
+                and timestamp &lt; #{endtime}
+            ORDER BY timestamp desc
+        ) a 
+        GROUP BY a.userId
     </select>
     
 </mapper>

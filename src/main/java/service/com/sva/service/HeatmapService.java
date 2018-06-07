@@ -48,6 +48,12 @@ public class HeatmapService
     private int timeRange;
     
     /** 
+     * @Fields tableName : 热力图查询表名
+     */ 
+    @Value("${heatmap.tableName}")
+    private String tableName;
+    
+    /** 
      * @Title: getMapInfoByStation 
      * @Description: 获取指定站点的所有地图信息 
      * @param stationId
@@ -90,6 +96,6 @@ public class HeatmapService
         long starttime = calendar.getTimeInMillis();
         long endtime = starttime + timeRange * 1000;
         
-        return dao.getHeatmapData(mapId, starttime, endtime);
+        return dao.getHeatmapData(tableName, mapId, starttime, endtime);
     }
 }
