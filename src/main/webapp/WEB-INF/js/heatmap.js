@@ -92,12 +92,41 @@ var calImgSize = function(width, height) {
 	return [ imgScale, newWidth, newHeight ];
 };
 
+var tuli = function()
+{			$("#legend").show();
+			$("#minup").popover("destroy") ;
+			$("#max").popover('destroy') ;
+			$("#min").popover('destroy') ;
+			$("#maxup").popover('destroy') ;
+			$("#max").html("3人/m2");
+			$("#max").css("color","purple");
+			$("#maxup").html("4人以上/m2");
+			$("#maxup").css("color","purple");
+			$("#minup").html("2人/m2");
+			$("#minup").css("color","purple");
+			$("#min").html("1人/m2");
+			$("#min").css("color","purple");
+			var htmlstrmin3 = '<i style="color:rgba(0,0,255,1);" class="icon-male"></i>'+17;
+			var option3 = {html:true,trigger:"hover",content:htmlstrmin3,placement:"top"};
+			var htmlstrmin2 = '<i style="color:rgba(73,255,0,1);" class="icon-male"></i><i style="color:rgba(73,255,0,1);" class="icon-male"></i>'+3;
+			var option2 = {html:true,trigger:"hover",content:htmlstrmin2,placement:"top"};
+			var htmlstrmin = '<i style="color:rgba(255,40,0,1);" class="icon-male"></i><i style="color:rgba(255,40,0,1);" class="icon-male"></i><i style="color:rgba(255,40,0,1);" class="icon-male"></i><i style="color:rgba(255,40,0,1);" class="icon-male"></i>'+2+2;
+			var htmlstrmin1 = '<i style="color:rgba(251,255,0,1);" class="icon-male"></i><i style="color:rgba(251,255,0,1);" class="icon-male"></i><i style="color:rgba(251,255,0,1);" class="icon-male"></i>'+10;
+			var option = {html:true,trigger:"hover",content:htmlstrmin,placement:"top"};
+			var option1 = {html:true,trigger:"hover",content:htmlstrmin1,placement:"top"};
+			//$("#max").popover(option1);
+		//	$("#min").popover(option3);
+			//$("#maxup").popover(option);
+			//$("#minup").popover(option2);
+}
+
 var Heatmap = function() {
 
 	var initHeatmap = function(floorNo) {
 		// 清空热力图背景
 		$("#mapContainer").css("background-image", "");
 		$("#heatmap").empty();
+						
 		$.post("/sva/home/getMapInfoByPosition", {
 			mapId : mapId
 		}, function(data) {
@@ -130,6 +159,7 @@ var Heatmap = function() {
 					$.post("/sva/home/getData", {mapId : mapId}, function(data) {
 						if (!data.error) {
 							if (data.data && data.data.length > 0) {
+								tuli();
 								var points = dataFilter(data.data, origX,
 										origY, scale, imgWidth, imgHeight,
 										coordinate, imgInfo[0]);
@@ -163,7 +193,11 @@ var Heatmap = function() {
 					var mapList = data.data;
 					var html = "";
 					for(var i=0; i<mapList.length; i++){
-						html = html + '<div class="floor" data-mapid="'+mapList[i].mapId+'">'+mapList[i].floor+'</div>';
+						if(mapId == mapList[i].mapId){
+							html = html + '<div class="floor active" data-mapid="'+mapList[i].mapId+'">'+mapList[i].floor+'</div>';
+						}else{
+							html = html + '<div class="floor" data-mapid="'+mapList[i].mapId+'">'+mapList[i].floor+'</div>';
+						}
 					}
 					$(".floorContainer").append(html);
 				}
@@ -174,10 +208,13 @@ var Heatmap = function() {
 			
 			// 点击楼层切换，触发热力图更新
 			$('.floor').live("click",function(e) {
+
 				mapId = $(this).data("mapid");
 				
 				initHeatmap(mapId);
-
+				// 更改按钮样式
+				$('.floor').removeClass("active");
+				$(this).addClass("active");
 			});
 		}
 
